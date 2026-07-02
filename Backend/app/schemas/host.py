@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Service(BaseModel):
@@ -19,8 +19,8 @@ class Host(BaseModel):
     vendor: Optional[str] = None
     operating_system: Optional[str] = None
     status: str
-    services: List[Service] = []
-
+    services: List[Service] = Field(default_factory=list)
+    
 
 class ScanResponse(BaseModel):
     target: str
